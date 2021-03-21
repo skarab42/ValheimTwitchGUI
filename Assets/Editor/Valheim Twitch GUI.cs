@@ -61,6 +61,6 @@ public class CreateAssetBundles : MonoBehaviour
 
         string target = $"{destDir}\\{filename}.dll";
 
-        File.Copy(assembly.outputPath, target);
+        FileUtil.ReplaceFile(assembly.outputPath, target);
     }
 }
