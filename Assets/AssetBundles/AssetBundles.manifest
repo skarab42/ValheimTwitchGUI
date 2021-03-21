@@ -1,0 +1,7 @@
+ManifestFileVersion: 0
+CRC: 3549960460
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: valheimtwitchgui
+      Dependencies: {}
