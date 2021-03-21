@@ -4,13 +4,38 @@ using UnityEngine;
 public class ValheimTwitchGUIScript : MonoBehaviour
 {
     public Button mainButton;
+    public Text mainButtonText;
     public GameObject gui;
+    public GameObject panels;
     public GameObject rewardGrid;
     public GameObject rewardButton;
 
     public void ToggleGUI()
     {
         gui.SetActive(!gui.activeSelf);
+    }
+
+    public void SetMainButtonText(string text)
+    {
+        mainButtonText.text = text;
+    }
+
+    public void HideAllPanels()
+    {
+        for (int i = 0; i < panels.transform.childCount; i++)
+        {
+            panels.transform.GetChild(i).gameObject.SetActive(false);
+        }
+    }
+
+    public void ShowPanel(string name)
+    {
+        for (int i = 0; i < panels.transform.childCount; i++)
+        {
+            var go = panels.transform.GetChild(i).gameObject;
+
+            go.SetActive(go.name == name);
+        }
     }
 
     public GameObject AddReward(string title, Color32 color, Texture2D texture)
