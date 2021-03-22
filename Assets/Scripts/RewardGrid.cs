@@ -5,6 +5,14 @@ public class RewardGrid : MonoBehaviour
 {
     public GameObject rewardButton;
 
+    public void Clear()
+    {
+        foreach (Transform child in transform)
+        {
+            Destroy(child.gameObject);
+        }
+    }
+
     public GameObject Add(string title, Color32 color, Texture2D texture)
     {
         var go = Instantiate(rewardButton, gameObject.transform);

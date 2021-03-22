@@ -1,0 +1,27 @@
+fileFormatVersion: 2
+guid: 8e1759f3fd0186e4f8907b6e48c5e442
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 120
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Averia Serif Libre
+  fontNames:
+  - Averia Serif Libre
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 783bbe625ac001446b70603e382b2c8d, type: 3}
+  - {fileID: 12800000, guid: d45d6a07e7c31f84db23915c4fce5a51, type: 3}
+  - {fileID: 12800000, guid: fbb014e7a586eee4bb8800454a045c13, type: 3}
+  - {fileID: 12800000, guid: c8562a49ecc3bea44b96f9bb4427383e, type: 3}
+  - {fileID: 12800000, guid: d0af137f60d20414ba30035816ef5783, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
