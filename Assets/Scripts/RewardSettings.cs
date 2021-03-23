@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class RewardSettings : MonoBehaviour
@@ -8,19 +9,32 @@ public class RewardSettings : MonoBehaviour
     public Text title;
     public Image image;
     public Button closeButton;
+    public Dropdown actionsDropdown;
+    public RewardButton rewardButton;
 
     public void Awake()
     {
         closeButton.onClick.AddListener(() => SetActive(false));
+        actionsDropdown.onValueChanged.AddListener(OnDropDownChanged);
     }
 
-    public void SetReward(RewardGridItem reward)
+    private void OnDropDownChanged(int index)
+    {
+        rewardButton.image.color = reward.color;
+        
+        if (index == 0)
+        {
+            rewardButton.image.color = new Color32(0, 0, 0, 127);
+        }
+    }
+
+    public void SetReward(RewardButton button, RewardGridItem reward)
     {
         this.reward = reward;
+        rewardButton = button;
         title.text = reward.title;
         image.sprite = reward.image.sprite;
-
-        Debug.Log($"SetReward -> {reward.title}");
+        actionsDropdown.value = reward.actionIndex;
     }
 
     public void SetActive(bool active)
