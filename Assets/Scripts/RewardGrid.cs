@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class RewardGrid : MonoBehaviour
 {
     public GameObject rewardButton;
+    public RewardSettings rewardSettings;
 
     public void Clear()
     {
@@ -13,21 +14,26 @@ public class RewardGrid : MonoBehaviour
         }
     }
 
-    public GameObject Add(string title, Color32 color, Texture2D texture)
+    public GameObject Add(RewardGridItem item)
     {
         var go = Instantiate(rewardButton, gameObject.transform);
 
-        var bgImage = go.GetComponent<Image>();
-        bgImage.color = color;
+        var script = go.GetComponent<RewardButton>();
+        script.rewardSettings = rewardSettings;
+        script.reward = item;
 
-        var image = go.transform.GetChild(0).GetComponent<Image>();
-        var sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0.5f, 0.5f));
-        
-        image.preserveAspect = true;
-        image.sprite = sprite;
+        var bgImage = go.GetComponent<Image>();
+        bgImage.color = item.color;
+
+        item.image = go.transform.GetChild(0).GetComponent<Image>();
+        var rect = new Rect(0, 0, item.imageTexture.width, item.imageTexture.height);
+        var sprite = Sprite.Create(item.imageTexture, rect, new Vector2(0.5f, 0.5f));
+
+        item.image.preserveAspect = true;
+        item.image.sprite = sprite;
 
         var text = go.transform.GetChild(1).GetComponent<Text>();
-        text.text = title;
+        text.text = item.title;
 
         return go;
     }

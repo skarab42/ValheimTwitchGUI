@@ -6,4 +6,5 @@ public class ValheimTwitchGUIScript : MonoBehaviour
     public MainPanel mainPanel;
     public RewardGrid rewardGrid;
     public RefreshRewardButton refreshRewardButton;
+    public RewardSettings rewardSettings;
 }
