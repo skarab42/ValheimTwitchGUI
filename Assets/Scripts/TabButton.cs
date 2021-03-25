@@ -15,7 +15,7 @@ public class TabButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
     private Image image;
 
-    public void Start()
+    public void Awake()
     {
         image = GetComponent<Image>();
         image.color = normalColor;

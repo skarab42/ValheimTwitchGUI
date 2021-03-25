@@ -18,6 +18,12 @@ public class SpawnCreatureSettings : MessageSettings
     public InputField countInput;
     public InputField distanceInput;
 
+    void Awake()
+    {
+        creatureDropdown.ClearOptions();
+        creatureDropdown.AddOptions(creatures);
+    }
+
     public override SettingsMessageData GetData()
     {
         var payload = new SpawnCreatureData();
@@ -36,12 +42,9 @@ public class SpawnCreatureSettings : MessageSettings
         levelInput.text = GetString(data, "Level", "1");
         countInput.text = GetString(data, "Count", "1");
         distanceInput.text = GetString(data, "Distance", "100");
-    }
 
-    void Start()
-    {
-        creatureDropdown.ClearOptions();
-        creatureDropdown.AddOptions(creatures);
+        creatureDropdown.Select();
+        creatureDropdown.RefreshShownValue();
     }
 
     public static List<string> creatures = new List<string> {
