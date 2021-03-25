@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Newtonsoft.Json.Linq;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class RavenMessageData : SettingsMessageData
@@ -7,16 +8,21 @@ public class RavenMessageData : SettingsMessageData
     public int Type { set; get; }
 }
 
-public class RavenMessageSettings : MonoBehaviour
+public class RavenMessageSettings : MessageSettings
 {
     public Dropdown type;
 
-    public RavenMessageData GetData()
+    public override SettingsMessageData GetData()
     {
         var payload = new RavenMessageData();
 
         payload.Type = type.value;
 
         return payload;
+    }
+
+    public override void SetData(JToken data)
+    {
+        type.value = GetInt(data, "Type", 0);
     }
 }

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Newtonsoft.Json.Linq;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class RewardGrid : MonoBehaviour
@@ -25,7 +26,9 @@ public class RewardGrid : MonoBehaviour
         var bgImage = go.GetComponent<Image>();
         bgImage.color = item.color;
 
-        if (item.actionIndex == 0)
+        var actionIndex = item.data?["Action"].Value<int>();
+
+        if (actionIndex == null || actionIndex == 0)
         {
             bgImage.color = new Color32(0, 0, 0, 127);
         }

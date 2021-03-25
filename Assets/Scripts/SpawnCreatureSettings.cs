@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using Newtonsoft.Json.Linq;
+using System.Collections.Generic;
 using UnityEngine.UI;
 
 public class SpawnCreatureData : SettingsMessageData
@@ -11,14 +11,14 @@ public class SpawnCreatureData : SettingsMessageData
     public int Distance { set; get; }
 }
 
-public class SpawnCreatureSettings : MonoBehaviour
+public class SpawnCreatureSettings : MessageSettings
 {
     public Dropdown creatureDropdown;
     public InputField levelInput;
     public InputField countInput;
     public InputField distanceInput;
 
-    public SpawnCreatureData GetData()
+    public override SettingsMessageData GetData()
     {
         var payload = new SpawnCreatureData();
 
@@ -28,6 +28,14 @@ public class SpawnCreatureSettings : MonoBehaviour
         payload.Distance = int.Parse(distanceInput.text);
 
         return payload;
+    }
+
+    public override void SetData(JToken data)
+    {
+        creatureDropdown.value = GetInt(data, "Creature", 0); 
+        levelInput.text = GetString(data, "Level", "1");
+        countInput.text = GetString(data, "Count", "1");
+        distanceInput.text = GetString(data, "Distance", "100");
     }
 
     void Start()

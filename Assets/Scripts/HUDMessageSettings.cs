@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿using Newtonsoft.Json.Linq;
 using UnityEngine.UI;
 
 public class HUDMessageData : SettingsMessageData
@@ -7,16 +7,21 @@ public class HUDMessageData : SettingsMessageData
     public int Position { set; get; }
 }
 
-public class HUDMessageSettings : MonoBehaviour
+public class HUDMessageSettings : MessageSettings
 {
     public Dropdown positionDropdown;
 
-    public HUDMessageData GetData()
+    public override SettingsMessageData GetData()
     {
         var payload = new HUDMessageData();
 
         payload.Position = positionDropdown.value;
 
         return payload;
+    }
+
+    public override void SetData(JToken data)
+    {
+        positionDropdown.value = GetInt(data, "Position", 0);
     }
 }

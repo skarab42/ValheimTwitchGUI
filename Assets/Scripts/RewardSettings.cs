@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,6 +14,24 @@ public class SettingsChangedArgs : EventArgs
     public SettingsMessageData Data { get; set; }
 }
 
+public abstract class MessageSettings : MonoBehaviour
+{
+    public abstract SettingsMessageData GetData();
+    public abstract void SetData(JToken data);
+    public static int GetInt(JToken data, string key, int defaultValue = 0)
+    {
+        if (data == null || data[key] == null)
+            return defaultValue;
+        return data[key].Value<int>();
+    }
+    public static string GetString(JToken data, string key, string defaultValue = "1")
+    {
+        if (data == null || data[key] == null)
+            return defaultValue;
+        return data[key].Value<string>();
+    }
+}
+
 public delegate void SettingsChangedHandler(object sender, SettingsChangedArgs e);
 
 public class RewardSettings : MonoBehaviour
@@ -21,6 +40,7 @@ public class RewardSettings : MonoBehaviour
 
     public Text title;
     public Image image;
+    public Button saveButton;
     public Button closeButton;
     public Dropdown actionsDropdown;
     public RewardButton rewardButton;
@@ -28,6 +48,8 @@ public class RewardSettings : MonoBehaviour
     public RavenMessageSettings ravenActionSettings;
     public SpawnCreatureSettings spawnCreatureSettings;
     public HUDMessageSettings hudMessageSettings;
+
+    public MessageSettings currentSettingsPanel;
 
     public event SettingsChangedHandler OnSettingsChanged;
 
@@ -38,18 +60,22 @@ public class RewardSettings : MonoBehaviour
         "HUD message"
     };
 
-    private void Start()
-    {
-        actionsDropdown.AddOptions(actions);
-    }
-
     public void Awake()
     {
-        closeButton.onClick.AddListener(OnPanelClosed);
-        actionsDropdown.onValueChanged.AddListener(OnDropDownChanged);
+        actionsDropdown.ClearOptions();
+        actionsDropdown.AddOptions(actions);
+        actionsDropdown.RefreshShownValue();
+
+        saveButton.onClick.AddListener(OnSave);
+        closeButton.onClick.AddListener(OnClose);
     }
 
-    private void OnPanelClosed()
+    private void OnClose()
+    {
+        SetActive(false);
+    }
+
+    private void OnSave()
     {
         SettingsMessageData data = null;
 
@@ -73,29 +99,24 @@ public class RewardSettings : MonoBehaviour
 
         OnSettingsChanged?.Invoke(this, new SettingsChangedArgs { Data = data });
 
-        SetActive(false);
+        OnClose();
     }
 
-    private void OnDropDownChanged(int index)
+    public void SetReward(RewardGridItem reward)
     {
-        if (rewardButton == null)
-            return;
+        SetActive(true);
         
-        rewardButton.image.color = reward.color;
-        
-        if (index == 0)
-        {
-            rewardButton.image.color = new Color32(0, 0, 0, 127);
-        }
-    }
-
-    public void SetReward(RewardButton button, RewardGridItem reward)
-    {
         this.reward = reward;
-        rewardButton = button;
         title.text = reward.title;
         image.sprite = reward.image.sprite;
-        actionsDropdown.value = reward.actionIndex;
+
+        var action = reward.data?["Action"].Value<int>();
+
+        actionsDropdown.value = action??0;
+        actionsDropdown.Select();
+
+        if (action != null)
+            currentSettingsPanel.SetData(reward.data);
     }
 
     public void SetActive(bool active)

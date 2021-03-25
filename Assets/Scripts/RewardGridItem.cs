@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Newtonsoft.Json.Linq;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class RewardGridItem
@@ -8,14 +9,14 @@ public class RewardGridItem
     public Color color;
     public Image image;
     public Texture2D imageTexture;
-    public int actionIndex;
+    public JToken data;
 
-    public RewardGridItem(string id, string title, Color color, Texture2D imageTexture, int actionIndex = 0)
+    public RewardGridItem(string id, string title, Color color, Texture2D imageTexture, JToken data = null)
     {
         this.id = id;
         this.title = title;
         this.color = color;
         this.imageTexture = imageTexture;
-        this.actionIndex = actionIndex;
+        this.data = data;
     }
 }

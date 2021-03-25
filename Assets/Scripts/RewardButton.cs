@@ -10,7 +10,6 @@ public class RewardButton : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        rewardSettings.SetReward(this, reward);
-        rewardSettings.SetActive(true);
+        rewardSettings.SetReward(reward);
     }
 }

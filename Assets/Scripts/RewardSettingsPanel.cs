@@ -4,10 +4,11 @@ using UnityEngine.UI;
 
 public class RewardSettingsPanel : MonoBehaviour
 {
-    public List<GameObject> panels;
+    public List<MessageSettings> panels;
     public Dropdown actionsDropdown;
+    public RewardSettings settings;
 
-    public void Start()
+    public void Awake()
     {
         actionsDropdown.onValueChanged.AddListener(OnActionChanged);
     }
@@ -16,7 +17,15 @@ public class RewardSettingsPanel : MonoBehaviour
     {
         for (var i = 0; i < panels.Count; i++)
         {
-            panels[i].SetActive(i + 1 == index);
+            var active = i + 1 == index;
+
+            panels[i].gameObject.SetActive(active);
+
+            if (active)
+            {
+                settings.currentSettingsPanel = panels[i];
+                panels[i].SetData(settings.reward.data);
+            }
         }
     }
 }
