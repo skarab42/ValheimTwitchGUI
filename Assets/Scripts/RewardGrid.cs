@@ -33,6 +33,11 @@ public class RewardGrid : MonoBehaviour
             bgImage.color = new Color32(0, 0, 0, 127);
         }
 
+        if (item.customReward)
+        {
+            script.managedBadge.gameObject.SetActive(true);
+        }
+
         item.image = go.transform.GetChild(0).GetComponent<Image>();
         var rect = new Rect(0, 0, item.imageTexture.width, item.imageTexture.height);
         var sprite = Sprite.Create(item.imageTexture, rect, new Vector2(0.5f, 0.5f));

@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class RewardButton : MonoBehaviour, IPointerClickHandler
 {
     public Image image;
+    public Image managedBadge;
     public RewardGridItem reward;
     public RewardSettings rewardSettings;
 
