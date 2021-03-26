@@ -3,10 +3,11 @@ using UnityEngine.UI;
 
 public class ValheimTwitchGUIScript : MonoBehaviour
 {
-    public MainButton mainButton;
     public MainPanel mainPanel;
+    public MainButton mainButton;
     public RewardGrid rewardGrid;
-    public RefreshRewardButton refreshRewardButton;
+    public AddRewardForm addRewardForm;
     public RewardSettings rewardSettings;
     public Dropdown rewardActionsDropdown;
+    public CustomButton refreshRewardButton;
 }

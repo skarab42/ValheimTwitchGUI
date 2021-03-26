@@ -2,7 +2,7 @@
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class RefreshRewardButton : MonoBehaviour
+public class CustomButton : MonoBehaviour
 {
     public Button button;
 
