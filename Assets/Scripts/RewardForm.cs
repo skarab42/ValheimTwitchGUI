@@ -7,6 +7,7 @@ public class RewardForm : MonoBehaviour
     public InputField cost;
     public InputField prompt;
     public Toggle userInputRequired;
+    public Toggle shouldRedemptionsSkipRequestQueue;
 
     public NewRewardArgs GetData()
     {
@@ -15,7 +16,8 @@ public class RewardForm : MonoBehaviour
             Title = title.text,
             Cost = cost.text,
             Prompt = prompt.text,
-            IsUserInputRequired = userInputRequired.enabled ? "true" : "false"
+            IsUserInputRequired = userInputRequired.enabled ? "true" : "false",
+            ShouldRedemptionsSkipRequestQueue = shouldRedemptionsSkipRequestQueue.enabled ? "true" : "false"
         };
     }
 }

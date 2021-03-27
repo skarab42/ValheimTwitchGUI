@@ -8,6 +8,7 @@ public class NewRewardArgs : EventArgs
     public string Cost { get; set; }
     public string Prompt { get; set; }
     public string IsUserInputRequired { get; set; }
+    public string ShouldRedemptionsSkipRequestQueue { get; set; }
 }
 
 public delegate void NewRewardHandler(object sender, NewRewardArgs e);
