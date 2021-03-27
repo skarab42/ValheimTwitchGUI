@@ -48,17 +48,19 @@ public class RewardSettings : MonoBehaviour
     public RavenMessageSettings ravenActionSettings;
     public SpawnCreatureSettings spawnCreatureSettings;
     public HUDMessageSettings hudMessageSettings;
+    public RandomEventSettings randomEventSettings;
 
     public MessageSettings currentSettingsPanel;
 
     public event SettingsChangedHandler OnSettingsChanged;
 
-    public List<string> actions = new List<string> {
+    private List<string> actions = new List<string> {
         "None",
         "Raven messenger",
         "Spawn creature",
-        "HUD message"
-    };
+        "HUD message",
+        "Start event"
+    }; 
 
     public void Awake()
     {
@@ -93,6 +95,9 @@ public class RewardSettings : MonoBehaviour
             case 3:
                 data = hudMessageSettings.GetData();
                 break;
+            case 4:
+                data = randomEventSettings.GetData();
+                break;
             default:
                 throw new ArgumentOutOfRangeException();
         }
@@ -110,7 +115,7 @@ public class RewardSettings : MonoBehaviour
         title.text = reward.title;
         image.sprite = reward.image.sprite;
 
-        var action = reward.data?["Action"].Value<int>();
+        var action = reward.data?["Action"]?.Value<int>();
 
         actionsDropdown.value = action??0;
         actionsDropdown.Select();
