@@ -49,6 +49,7 @@ public class RewardSettings : MonoBehaviour
     public SpawnCreatureSettings spawnCreatureSettings;
     public HUDMessageSettings hudMessageSettings;
     public RandomEventSettings randomEventSettings;
+    public EnvironmentSettings environmentSettings;
 
     public MessageSettings currentSettingsPanel;
 
@@ -59,7 +60,8 @@ public class RewardSettings : MonoBehaviour
         "Raven messenger",
         "Spawn creature",
         "HUD message",
-        "Start event"
+        "Start event",
+        "Set environment"
     }; 
 
     public void Awake()
@@ -97,6 +99,9 @@ public class RewardSettings : MonoBehaviour
                 break;
             case 4:
                 data = randomEventSettings.GetData();
+                break;
+            case 5:
+                data = environmentSettings.GetData();
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
