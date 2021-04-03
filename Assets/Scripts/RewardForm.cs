@@ -16,8 +16,8 @@ public class RewardForm : MonoBehaviour
             Title = title.text,
             Cost = cost.text,
             Prompt = prompt.text,
-            IsUserInputRequired = userInputRequired.enabled ? "true" : "false",
-            ShouldRedemptionsSkipRequestQueue = shouldRedemptionsSkipRequestQueue.enabled ? "true" : "false"
+            IsUserInputRequired = userInputRequired.isOn ? "true" : "false",
+            ShouldRedemptionsSkipRequestQueue = shouldRedemptionsSkipRequestQueue.isOn ? "true" : "false"
         };
     }
 }
