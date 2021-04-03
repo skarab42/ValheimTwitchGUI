@@ -15,7 +15,7 @@ public class RewardGrid : MonoBehaviour
         }
     }
 
-    public GameObject Add(RewardGridItem item)
+    public GameObject Add(RewardGridItem item, bool isNew = false)
     {
         var go = Instantiate(rewardButton, gameObject.transform);
 
@@ -52,6 +52,9 @@ public class RewardGrid : MonoBehaviour
         {
             text.text = text.text.Substring(0, 25).TrimEnd() + ". . .";
         }
+
+        if (isNew)
+            rewardSettings.SetReward(item);
 
         return go;
     }
