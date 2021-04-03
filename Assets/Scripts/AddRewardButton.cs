@@ -7,6 +7,9 @@ public class AddRewardButton : MonoBehaviour
 
     private void Awake()
     {
-        GetComponent<Button>().onClick.AddListener(() => addRewardForm.SetActive(true));
+        GetComponent<Button>().onClick.AddListener(() => {
+            addRewardForm.rewardForm.ResetData();
+            addRewardForm.SetActive(true);
+        });
     }
 }

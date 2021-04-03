@@ -20,4 +20,13 @@ public class RewardForm : MonoBehaviour
             ShouldRedemptionsSkipRequestQueue = shouldRedemptionsSkipRequestQueue.isOn ? "true" : "false"
         };
     }
+
+    public void ResetData()
+    {
+        title.text = "My custom reward title";
+        prompt.text = "";
+        cost.text = "500";
+        userInputRequired.isOn = true;
+        shouldRedemptionsSkipRequestQueue.isOn = true;
+    }
 }
