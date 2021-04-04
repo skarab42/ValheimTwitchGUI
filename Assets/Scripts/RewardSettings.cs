@@ -50,18 +50,20 @@ public class RewardSettings : MonoBehaviour
     public HUDMessageSettings hudMessageSettings;
     public RandomEventSettings randomEventSettings;
     public EnvironmentSettings environmentSettings;
+    public PlayerSettings playerSettings;
 
     public MessageSettings currentSettingsPanel;
 
     public event SettingsChangedHandler OnSettingsChanged;
 
-    private List<string> actions = new List<string> {
+    private readonly List<string> actions = new List<string> {
         "None",
         "Raven messenger",
         "Spawn creature",
         "HUD message",
         "Start event",
-        "Set environment"
+        "Set environment",
+        "Player action"
     }; 
 
     public void Awake()
@@ -102,6 +104,9 @@ public class RewardSettings : MonoBehaviour
                 break;
             case 5:
                 data = environmentSettings.GetData();
+                break;
+            case 6:
+                data = playerSettings.GetData();
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
