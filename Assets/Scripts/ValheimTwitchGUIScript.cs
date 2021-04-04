@@ -10,4 +10,5 @@ public class ValheimTwitchGUIScript : MonoBehaviour
     public RewardSettings rewardSettings;
     public Dropdown rewardActionsDropdown;
     public CustomButton refreshRewardButton;
+    public GameObject notAffiliatPanel;
 }
