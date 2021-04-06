@@ -79,6 +79,11 @@ public class SpawnCreatureSettings : MessageSettings
         "Gull",
         "Leviathan",
         "Odin",
+        "Eikthyr",
+        "gd_king",
+        "Bonemass",
+        "Dragon",
+        "GoblinKing",
     };
 
     public static List<string> creatures = new List<string> {
@@ -120,10 +125,10 @@ public class SpawnCreatureSettings : MessageSettings
         "Troll",
         "Wolf",
         "Wraith",
-        //"Eikthyr",
-        //"gd_king",
-        //"Bonemass",
-        //"Dragon",
-        //"GoblinKing",
+        "Eikthyr",
+        "gd_king",
+        "Bonemass",
+        "Dragon",
+        "GoblinKing",
     };
 }
