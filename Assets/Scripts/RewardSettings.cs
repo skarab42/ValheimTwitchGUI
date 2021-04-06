@@ -17,18 +17,28 @@ public class SettingsChangedArgs : EventArgs
 public abstract class MessageSettings : MonoBehaviour
 {
     public abstract SettingsMessageData GetData();
+
     public abstract void SetData(JToken data);
+
     public static int GetInt(JToken data, string key, int defaultValue = 0)
     {
         if (data == null || data[key] == null)
             return defaultValue;
         return data[key].Value<int>();
     }
+
     public static string GetString(JToken data, string key, string defaultValue = "1")
     {
         if (data == null || data[key] == null)
             return defaultValue;
         return data[key].Value<string>();
+    }
+
+    public static bool GetBool(JToken data, string key, bool defaultValue = false)
+    {
+        if (data == null || data[key] == null)
+            return defaultValue;
+        return data[key].Value<bool>();
     }
 }
 
